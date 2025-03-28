@@ -88,7 +88,7 @@ const DashboardLatestActivities = () => {
                     />
                   }
                   description={
-                    <Space size={4}>
+                    <Space size={4} wrap>
                       <Text strong>{item?.user.name}</Text>
                       <Text>
                         {item.action === "CREATE" ? "created" : "moved"}
