@@ -1,9 +1,4 @@
-import {
-  Authenticated,
-  GitHubBanner,
-  Refine,
-  WelcomePage,
-} from "@refinedev/core";
+import { Authenticated, Refine } from "@refinedev/core";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
@@ -16,8 +11,8 @@ import routerBindings, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
-import { App as AntdApp, List } from "antd";
-import { createClient } from "graphql-ws";
+import { App as AntdApp } from "antd";
+
 import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 import {
   ForgotPassword,
@@ -31,11 +26,12 @@ import {
 import Layout from "./components/layout/Index";
 import { resources } from "./config/Resources";
 import TaskList from "./pages/tasks/List";
+import CreateTask from "./pages/tasks/Create";
+import EditTask from "./pages/tasks/EditTask";
 
 function App() {
   return (
     <BrowserRouter>
-      <GitHubBanner />
       <RefineKbarProvider>
         <AntdApp>
           <DevtoolsProvider>
@@ -55,8 +51,6 @@ function App() {
               }}
             >
               <Routes>
-                {/* <Route index element={<WelcomePage />} /> */}
-
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -78,8 +72,16 @@ function App() {
                     <Route path="new" element={<Create />} />
                     <Route path="edit/:id" element={<EditPage />} />
                   </Route>
-                  <Route path="/tasks">
-                    <Route index element={<TaskList />} />
+                  <Route
+                    path="/tasks"
+                    element={
+                      <TaskList>
+                        <Outlet />
+                      </TaskList>
+                    }
+                  >
+                    <Route path="new" element={<CreateTask />} />
+                    <Route path="edit/:id" element={<EditTask />} />
                   </Route>
                 </Route>
               </Routes>

@@ -4,7 +4,7 @@ import {
   KanbanBoardContainer,
   KanbanBoard,
 } from "@/components/tasks/Kanban/Board";
-import ProjectCard, { ProjectCardMemo } from "@/components/tasks/Kanban/Card";
+import { ProjectCardMemo } from "@/components/tasks/Kanban/Card";
 import KanbanColumn from "@/components/tasks/Kanban/Column";
 import KanbanItem from "@/components/tasks/Kanban/Item";
 import { UPDATE_TASK_STAGE_MUTATION } from "@/graphql/mutations";
@@ -19,6 +19,8 @@ import { PropsWithChildren, useMemo } from "react";
 
 const TaskList = ({ children }: PropsWithChildren) => {
   const { replace } = useNavigation();
+
+  // Fetch Tasks stages
   const { data: stages, isLoading: isLoadingStages } = useList<TaskStage>({
     resource: "taskStages",
     filters: [
@@ -38,7 +40,9 @@ const TaskList = ({ children }: PropsWithChildren) => {
       gqlQuery: TASK_STAGES_QUERY,
     },
   });
+  // console.log(stages);
 
+  // Fetch Tasks
   const { data: tasks, isLoading: isLoadingTask } = useList<
     GetFieldsFromList<TasksQuery>
   >({
@@ -60,6 +64,8 @@ const TaskList = ({ children }: PropsWithChildren) => {
     },
   });
 
+  // console.log(tasks);
+
   // use to mutate and move the task for drag and drop
   const { mutate: updateTask } = useUpdate();
 
@@ -72,7 +78,8 @@ const TaskList = ({ children }: PropsWithChildren) => {
       };
     }
 
-    const unassignedStage = tasks.data.filter((task) => task.stageId === null); // if no stageId it will go to unassigned
+    // if no stageId assign to unassignedStage
+    const unassignedStage = tasks.data.filter((task) => task.stageId === null);
 
     const grouped: TaskStage[] = stages.data.map((stage) => ({
       ...stage,
@@ -85,7 +92,7 @@ const TaskList = ({ children }: PropsWithChildren) => {
     };
   }, [stages, tasks]);
 
-  console.log(tasks);
+  // console.log(tasks);
 
   const handleAddCard = (args: { stageId: string }) => {
     const path =
@@ -125,7 +132,6 @@ const TaskList = ({ children }: PropsWithChildren) => {
   };
 
   const isLoading = isLoadingStages || isLoadingTask;
-
   if (isLoading) {
     return <PageSkeleton />;
   }
@@ -193,6 +199,7 @@ const TaskList = ({ children }: PropsWithChildren) => {
 };
 export default TaskList;
 
+///////// Skeleton ////////
 const PageSkeleton = () => {
   const columnCount = 6;
   const itemCount = 4;

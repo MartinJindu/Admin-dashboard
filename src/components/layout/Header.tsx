@@ -9,6 +9,8 @@ const Header = () => {
     justifyContent: "flex-end",
     alignItems: "center",
     padding: "0 24px",
+    height: "63px",
+    width: "auto",
     position: "sticky",
     top: 0,
     zIndex: 999,
