@@ -4,3 +4,4 @@ export * from "./login";
 export * from "./register";
 export * from "./company/List";
 export * from "./company/Create";
+export * from "./company/Edit";
