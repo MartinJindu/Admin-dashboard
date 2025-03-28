@@ -16,7 +16,7 @@ import routerBindings, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
-import { App as AntdApp } from "antd";
+import { App as AntdApp, List } from "antd";
 import { createClient } from "graphql-ws";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 import {
@@ -30,6 +30,7 @@ import {
 } from "./pages";
 import Layout from "./components/layout/Index";
 import { resources } from "./config/Resources";
+import TaskList from "./pages/tasks/List";
 
 function App() {
   return (
@@ -76,6 +77,9 @@ function App() {
                     <Route index element={<CompanyList />} />
                     <Route path="new" element={<Create />} />
                     <Route path="edit/:id" element={<EditPage />} />
+                  </Route>
+                  <Route path="/tasks">
+                    <Route index element={<TaskList />} />
                   </Route>
                 </Route>
               </Routes>
