@@ -9,7 +9,7 @@ import KanbanColumn from "@/components/tasks/Kanban/Column";
 import KanbanItem from "@/components/tasks/Kanban/Item";
 import { UPDATE_TASK_STAGE_MUTATION } from "@/graphql/mutations";
 import { TASK_STAGES_QUERY, TASKS_QUERY } from "@/graphql/queries";
-import { TaskStage } from "@/graphql/schema.types";
+import { Task, TaskStage } from "@/graphql/schema.types";
 import { TasksQuery } from "@/graphql/types";
 import { DragEndEvent } from "@dnd-kit/core";
 import { useList, useNavigation, useUpdate } from "@refinedev/core";
@@ -83,7 +83,9 @@ const TaskList = ({ children }: PropsWithChildren) => {
 
     const grouped: TaskStage[] = stages.data.map((stage) => ({
       ...stage,
-      tasks: tasks.data.filter((task) => task.stageId?.toString() === stage.id),
+      tasks: tasks.data.filter(
+        (task) => task.stageId?.toString() === stage.id
+      ) as Task[], // casting the tasks as Task[] type
     }));
 
     return {
