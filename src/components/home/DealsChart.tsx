@@ -22,8 +22,6 @@ const DealsChart = () => {
     meta: { gqlQuery: DASHBOARD_DEALS_CHART_QUERY },
   });
 
-  console.log(data?.data);
-
   // to memoize the data
   const dealData = useMemo(() => {
     return mapDealsData(data?.data);

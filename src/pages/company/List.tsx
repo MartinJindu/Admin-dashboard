@@ -2,10 +2,7 @@ import CustomAvatar from "@/components/CustomAvatar";
 import { Text } from "@/components/Text";
 import { COMPANIES_LIST_QUERY } from "@/graphql/queries";
 import { Company } from "@/graphql/schema.types";
-import {
-  CompaniesListQuery,
-  CompaniesListQueryVariables,
-} from "@/graphql/types";
+
 import { currencyNumber } from "@/utilities";
 import { SearchOutlined } from "@ant-design/icons";
 import {
