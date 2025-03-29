@@ -118,7 +118,6 @@ export const StageForm = ({ isLoading }: Props) => {
                   value: null,
                 },
               ])}
-              bordered={false}
               showSearch={false}
               placeholder="Select a stage"
               onSearch={undefined}
