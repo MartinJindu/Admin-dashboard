@@ -57,7 +57,7 @@ const EditTask = () => {
       className="kanban-update-modal"
       onCancel={() => {
         close();
-        list("tasks", "replace");
+        list("tasks", "replace"); // navigate to the task list page
       }}
       title={<TitleForm initialValues={{ title }} isLoading={isLoading} />}
       width={586}
