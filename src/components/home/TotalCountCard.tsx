@@ -80,7 +80,7 @@ const DashboardTotalCountCard = ({
           )}
         </Text>
 
-        <Area {...config} height={80} width={250} />
+        <Area {...config} height={80} width={180} />
       </div>
     </Card>
   );
