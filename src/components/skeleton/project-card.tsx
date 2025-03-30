@@ -4,10 +4,8 @@ const ProjectCardSkeleton = () => {
   return (
     <Card
       size="small"
-      bodyStyle={{
-        display: "flex",
-        justifyContent: "center",
-        gap: "8px",
+      styles={{
+        body: { display: "flex", justifyContent: "center", gap: "8px" },
       }}
       title={
         <Skeleton.Button
